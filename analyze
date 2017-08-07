@@ -35,7 +35,6 @@ def main():
 		tokenized += nltk.word_tokenize(word)
 
 	for word in tokenized:
-		swer = word
 		if word in sware_words:
 			print(word)
 			sware_words_counter+=1
