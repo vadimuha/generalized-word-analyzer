@@ -16,7 +16,6 @@ def main():
 		
 		while len(line) > 0:
 			sware_words += [line.strip()]
-			
 			line = word.readline()
 	subtitle = []
 	
