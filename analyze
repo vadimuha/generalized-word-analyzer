@@ -5,8 +5,6 @@ import os
 import nltk
 
 def main():
-""" Print number of swere words in subtile """
-	
 	if len(sys.argv) != 2:
 		print("Usage: ./analyze subtitles_file")
 		exit(1)
@@ -17,29 +15,25 @@ def main():
 		
 		while len(line) > 0:
 			sware_words += [line.strip()]
-			
 			line = word.readline()
+			
 	subtitle = []
-	
+	tokenized = []
+	sware_words_counter = 0
+
 	with open(os.path.join(sys.path[0], sys.argv[1]), 'r') as f:
 		line = f.readline()
 		
 		while len(line) > 0:
-			subtitle += [line.strip()]
-			line = f.readline()
-	
-	tokenized = []
-	sware_words_counter = 0
-	
-	for word in subtitle:
-		tokenized += nltk.word_tokenize(word)
+			line = line.strip()
+			tokenized = nltk.word_tokenize(line)
+			for word in tokenized:
+				if word in sware_words:
+					print(word)
+					sware_words_counter+=1
 
-	for word in tokenized:
-		swer = word
-		if word in sware_words:
-			print(word)
-			sware_words_counter+=1
-	
+			line = f.readline()
+
 	print("File has {} swear words".format(sware_words_counter))
 
 if __name__ == "__main__":
