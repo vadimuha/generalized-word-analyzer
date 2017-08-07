@@ -5,7 +5,6 @@ import os
 import nltk
 
 def main():
-""" Print number of swere words in subtile """
 	
 	if len(sys.argv) != 2:
 		print("Usage: ./analyze subtitles_file")
