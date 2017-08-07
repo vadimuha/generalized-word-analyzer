@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+import sys
+import os
+
+import nltk
+
+def main():
+""" Print number of swere words in subtile """
+	
+	if len(sys.argv) != 2:
+		print("Usage: ./analyze subtitles_file")
+		exit(1)
+	
+	sware_words = []
+	with open("words.txt", 'r') as word:
+		line = word.readline()
+		
+		while len(line) > 0:
+			sware_words += [line.strip()]
+			
+			line = word.readline()
+	subtitle = []
+	
+	with open(os.path.join(sys.path[0], sys.argv[1]), 'r') as f:
+		line = f.readline()
+		
+		while len(line) > 0:
+			subtitle += [line.strip()]
+			line = f.readline()
+	
+	tokenized = []
+	sware_words_counter = 0
+	
+	for word in subtitle:
+		tokenized += nltk.word_tokenize(word)
+
+	for word in tokenized:
+		swer = word
+		if word in sware_words:
+			print(word)
+			sware_words_counter+=1
+	
+	print("File has {} swear words".format(sware_words_counter))
+
+if __name__ == "__main__":
+	main()
