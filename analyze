@@ -5,13 +5,13 @@ import os
 import nltk
 
 def main():
-	if len(sys.argv) != 2:
-		print("Usage: ./analyze subtitles_file")
+	if len(sys.argv) != 3:
+		print("Usage: ./analyze file_to_analyze words")
 		exit(1)
 	
 	sware_words = []
-	with open("words.txt", 'r') as word:
-		line = word.readline()
+	with open(os.path.join(sys.path[0], sys.argv[2]), 'r') as word:
+		line = word.readlineline()
 		
 		while len(line) > 0:
 			sware_words += [line.strip()]
@@ -34,7 +34,7 @@ def main():
 
 			line = f.readline()
 
-	print("File has {} swear words".format(sware_words_counter))
+	print("File has {} matched words".format(sware_words_counter))
 
 if __name__ == "__main__":
 	main()
